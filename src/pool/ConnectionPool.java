@@ -19,7 +19,7 @@ public class ConnectionPool {
     /** ConnectionPool (Constructor)
      * Construye la instancia del pool de conexiones
      * 
-     * @param url url de conexión a la base de datos Ej: jdbc:mariadb://localhost:3306/miBaseDeDatos
+     * @param url url de conexión a la base de datos Ej: jdbc:postgresql://localhost:5432/miBase?user=user&password=password
      * @param user Usuario con el que realizar la conexión
      * @param password Contraseña del usuario
      */
