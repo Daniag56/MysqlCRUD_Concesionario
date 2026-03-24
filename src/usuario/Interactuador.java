@@ -1,5 +1,6 @@
 package usuario;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,9 +24,8 @@ public interface Interactuador {
     GestorVehiculo miGestor = new GestorVehiculo(pool.getConnection());    
     Scanner sc = new Scanner(System.in);
 
-    // Consulta ordenada de vehículos
     public static void consultaOrdenada() {
-        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        List<Vehiculo> vehiculos = new ArrayList<>();
 
         System.out.println("Opciones ordenación");
         System.out.println("1. Matrícula");
@@ -57,13 +57,13 @@ public interface Interactuador {
             query += solicitarOrden();
             vehiculos = miGestor.requestAll(query);
 
-            if (vehiculos.size() == 0) {
+            if (vehiculos.isEmpty()) {
                 System.out.println("Error: No se encontraron vehículos.");
             } else {
                 for (Vehiculo v : vehiculos) {
                     System.out.println(v);
                 }
-                exportar(vehiculos);
+                exportar(new ArrayList<>(vehiculos));
             }
 
         } catch (Exception e) {
@@ -71,7 +71,6 @@ public interface Interactuador {
         }
     }
 
-    // Consulta por matrícula
     public static void consultaPorMatricula() {
         System.out.print("Introduzca la matrícula del vehículo: ");
         long matricula = (long) solicitarValorNumérico(Long.class);
@@ -88,7 +87,6 @@ public interface Interactuador {
         }
     }
 
-    // Alta de vehículo
     public static void altaVehiculo() {    
         System.out.print("Introduzca la matrícula: ");
         long matricula = (long)solicitarValorNumérico(Long.class);
@@ -117,7 +115,7 @@ public interface Interactuador {
         Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca, modelo);
 
         try {  
-            if (!miGestor.create(vehiculo)) {
+            if (!miGestor.insert(vehiculo)) {
                 System.out.println("Error: no se pudo crear el vehículo.");
             }
         } catch (Exception e) {
@@ -125,7 +123,6 @@ public interface Interactuador {
         }
     }
 
-    // Modificación de vehículo
     public static void modificaciónVehiculo() {      
         System.out.print("Introduzca la matrícula del vehículo que desea modificar: ");
         long matricula = (long)solicitarValorNumérico(Long.class);
@@ -162,7 +159,6 @@ public interface Interactuador {
         }
     }
 
-    // Baja de vehículo
     public static void bajaVehiculo() {  
         System.out.print("Introduzca la matrícula del vehículo que desea dar de baja: ");
         long matricula = (long)solicitarValorNumérico(Long.class);
@@ -176,7 +172,6 @@ public interface Interactuador {
         }
     }
 
-    // Solicitar elección
     public static int solicitarElección(int OPCIÓN_MAX) {
         int elección = 0;
         try {
@@ -190,7 +185,6 @@ public interface Interactuador {
         return elección;
     }
 
-    // Solicitar valor numérico
     private static Object solicitarValorNumérico(Class<?> tipo) {
         Object resultado = null;
         while (resultado == null) {
@@ -210,7 +204,6 @@ public interface Interactuador {
         return resultado;
     }
 
-    // Orden ASC/DESC
     private static String solicitarOrden() {
         System.out.println("1. Ascendente");
         System.out.println("2. Descendente");
@@ -223,7 +216,6 @@ public interface Interactuador {
         }
     }
 
-    // Exportar vehículos
     public static void exportar(ArrayList<Vehiculo> vehiculos) {
         System.out.println("¿Desea exportar los datos a un archivo? (Y/N)");
         String eleccion = sc.nextLine();
@@ -242,7 +234,6 @@ public interface Interactuador {
         }
     }
 
-    // Importar vehículos
     public static void importar() {
         System.out.print("Escriba el nombre del archivo a importar: ");
         String nombreArchivo = sc.nextLine();
@@ -264,7 +255,7 @@ public interface Interactuador {
                 );
 
                 try {
-                    if (!miGestor.create(vehiculo)) {
+                    if (!miGestor.insert(vehiculo)) {
                         System.out.println("Error al importar vehículo.");
                     }
                 } catch (Exception e) {
@@ -276,7 +267,6 @@ public interface Interactuador {
         }
     }
 
-    // Exportar todos
     public static void exportarAll() {
         System.out.print("Escriba el nombre del archivo: ");
         String nombreArchivo = sc.nextLine();
