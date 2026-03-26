@@ -4,40 +4,6 @@ import crud.GestorGenerico;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-
-/**
- * GestorVehiculo gestiona las operaciones CRUD sobre la tabla "vehiculos".
- *
- * <p>Esta clase extiende {@link GestorGenerico} y proporciona la lógica
- * específica para mapear objetos {@link Vehiculo} con los registros de la base
- * de datos.</p>
- *
- * <h2>IMPORTANTE SOBRE LOS NOMBRES DE COLUMNA</h2>
- * <p>
- * En PostgreSQL, cuando una columna se crea con mayúsculas (por ejemplo:
- * <code>numBastidor</code>), el motor la almacena internamente como un
- * identificador <strong>sensible a mayúsculas</strong>. Esto significa que
- * solo puede ser referenciada usando comillas dobles:
- * </p>
- *
- * <pre>
- * "numBastidor"
- * </pre>
- *
- * <p>
- * Si se escribe sin comillas, PostgreSQL convierte el nombre a minúsculas
- * (<code>numbastidor</code>) y provoca el error:
- * </p>
- *
- * <pre>
- * ERROR: column "numbastidor" does not exist
- * </pre>
- *
- * <p>
- * Por este motivo, todas las columnas con mayúsculas deben escribirse entre
- * comillas dobles en las sentencias SQL.
- * </p>
- */
 public class GestorVehiculo extends GestorGenerico<Vehiculo> {
 
     /**
