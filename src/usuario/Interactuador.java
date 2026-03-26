@@ -17,7 +17,7 @@ import java.io.FileReader;
 public interface Interactuador {
 
     final String URL = "jdbc:postgresql://db.gkwtbmbpjtnhhimkuwnu.supabase.co:5432/postgres";
-    final String USUARIO = "Daniag56";
+    final String USUARIO = "Concesionario";
     final String CLAVE = "Alozaina.12";
 
     ConnectionPool pool = new ConnectionPool(URL, USUARIO, CLAVE);
