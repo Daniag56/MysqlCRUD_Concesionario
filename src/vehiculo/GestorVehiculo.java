@@ -10,7 +10,7 @@ public class GestorVehiculo extends GestorGenerico<Vehiculo> {
     public GestorVehiculo(Connection conn) {
         super(conn, "vehiculos", "numBastidor",
                 rs -> new Vehiculo(
-                        rs.getLong("matricula"),
+                        rs.getString("matricula"),     
                         rs.getLong("numBastidor"),
                         rs.getInt("cv"),
                         rs.getString("descripcion"),
@@ -24,8 +24,7 @@ public class GestorVehiculo extends GestorGenerico<Vehiculo> {
     public boolean insert(Vehiculo v) throws SQLException {
         return execute(
                 "INSERT INTO vehiculos (matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca, modelo) "
-                        +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 v.getMatricula(), v.getNumBastidor(), v.getCv(),
                 v.getDescripcion(), v.getPrecioCompra(), v.getPrecioVenta(),
                 v.getMarca(), v.getModelo());
@@ -35,8 +34,7 @@ public class GestorVehiculo extends GestorGenerico<Vehiculo> {
     public boolean update(Vehiculo v) throws SQLException {
         return execute(
                 "UPDATE vehiculos SET matricula=?, cv=?, descripcion=?, precioCompra=?, precioVenta=?, marca=?, modelo=? "
-                        +
-                        "WHERE numBastidor=?",
+                        + "WHERE numBastidor=?",
                 v.getMatricula(), v.getCv(), v.getDescripcion(),
                 v.getPrecioCompra(), v.getPrecioVenta(),
                 v.getMarca(), v.getModelo(), v.getNumBastidor());

@@ -44,30 +44,14 @@ public interface Interactuador {
             String query = "";
 
             switch (eleccion) {
-                case 1:
-                    query = "matricula";
-                    break;
-                case 2:
-                    query = "numBastidor";
-                    break;
-                case 3:
-                    query = "cv";
-                    break;
-                case 4:
-                    query = "descripcion";
-                    break;
-                case 5:
-                    query = "precioCompra";
-                    break;
-                case 6:
-                    query = "precioVenta";
-                    break;
-                case 7:
-                    query = "marca";
-                    break;
-                case 8:
-                    query = "modelo";
-                    break;
+                case 1: query = "matricula"; break;
+                case 2: query = "numBastidor"; break;
+                case 3: query = "cv"; break;
+                case 4: query = "descripcion"; break;
+                case 5: query = "precioCompra"; break;
+                case 6: query = "precioVenta"; break;
+                case 7: query = "marca"; break;
+                case 8: query = "modelo"; break;
             }
 
             query += solicitarOrden();
@@ -105,7 +89,7 @@ public interface Interactuador {
 
     public static void altaVehiculo() {
         System.out.print("Introduzca la matrícula: ");
-        long matricula = (long) solicitarValorNumérico(Long.class);
+        String matricula = sc.nextLine();
 
         System.out.print("Introduzca el número de bastidor: ");
         long numBastidor = (long) solicitarValorNumérico(Long.class);
@@ -128,8 +112,8 @@ public interface Interactuador {
         System.out.print("Introduzca el modelo: ");
         String modelo = sc.nextLine();
 
-        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca,
-                modelo);
+        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion,
+                precioCompra, precioVenta, marca, modelo);
 
         try {
             if (!miGestor.insert(vehiculo)) {
@@ -145,7 +129,7 @@ public interface Interactuador {
         long numBastidor = (long) solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca la nueva matrícula: ");
-        long matricula = (long) solicitarValorNumérico(Long.class);
+        String matricula = sc.nextLine();
 
         System.out.print("Introduzca los nuevos caballos (CV): ");
         int cv = (int) solicitarValorNumérico(Integer.class);
@@ -165,8 +149,8 @@ public interface Interactuador {
         System.out.print("Introduzca el nuevo modelo: ");
         String modelo = sc.nextLine();
 
-        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca,
-                modelo);
+        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion,
+                precioCompra, precioVenta, marca, modelo);
 
         try {
             if (!miGestor.update(vehiculo)) {
@@ -235,12 +219,9 @@ public interface Interactuador {
         System.out.print("Seleccione el orden: ");
 
         switch (solicitarElección(2)) {
-            case 1:
-                return " ASC";
-            case 2:
-                return " DESC";
-            default:
-                return "";
+            case 1: return " ASC";
+            case 2: return " DESC";
+            default: return "";
         }
     }
 
@@ -273,7 +254,7 @@ public interface Interactuador {
                 String[] datos = linea.split(",");
 
                 Vehiculo vehiculo = new Vehiculo(
-                        Long.parseLong(datos[0]),
+                        datos[0],                           
                         Long.parseLong(datos[1]),
                         Integer.parseInt(datos[2]),
                         datos[3],

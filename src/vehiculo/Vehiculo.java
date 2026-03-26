@@ -2,7 +2,7 @@ package vehiculo;
 
 public class Vehiculo {
 
-    private long matricula;
+    private String matricula;     
     private long numBastidor;
     private int cv;
     private String descripcion;
@@ -11,8 +11,8 @@ public class Vehiculo {
     private String marca;
     private String modelo;
 
-    public Vehiculo(long matricula, long numBastidor, int cv, String descripcion,
-            double precioCompra, double precioVenta, String marca, String modelo) {
+    public Vehiculo(String matricula, long numBastidor, int cv, String descripcion,
+                    double precioCompra, double precioVenta, String marca, String modelo) {
         this.matricula = matricula;
         this.numBastidor = numBastidor;
         this.cv = cv;
@@ -23,11 +23,11 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public long getMatricula() {
+    public String getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(long matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -95,7 +95,7 @@ public class Vehiculo {
     @Override
     public String toString() {
         return "Vehiculo{" +
-                "matricula=" + matricula +
+                "matricula='" + matricula + '\'' +
                 ", numBastidor=" + numBastidor +
                 ", cv=" + cv +
                 ", descripcion='" + descripcion + '\'' +
