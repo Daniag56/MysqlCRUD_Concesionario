@@ -14,14 +14,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.FileReader;
 
-public interface Interactuador {    
+public interface Interactuador {
 
     final String URL = "jdbc:postgresql://db.gkwtbmbpjtnhhimkuwnu.supabase.co:5432/postgres";
-    final String USUARIO = "postgres";
+    final String USUARIO = "Daniag56";
     final String CLAVE = "Alozaina.12";
 
     ConnectionPool pool = new ConnectionPool(URL, USUARIO, CLAVE);
-    GestorVehiculo miGestor = new GestorVehiculo(pool.getConnection());    
+    GestorVehiculo miGestor = new GestorVehiculo(pool.getConnection());
     Scanner sc = new Scanner(System.in);
 
     public static void consultaOrdenada() {
@@ -44,14 +44,30 @@ public interface Interactuador {
             String query = "";
 
             switch (eleccion) {
-                case 1: query = "matricula"; break;
-                case 2: query = "numBastidor"; break;
-                case 3: query = "cv"; break;
-                case 4: query = "descripcion"; break;
-                case 5: query = "precioCompra"; break;
-                case 6: query = "precioVenta"; break;
-                case 7: query = "marca"; break;
-                case 8: query = "modelo"; break;
+                case 1:
+                    query = "matricula";
+                    break;
+                case 2:
+                    query = "numBastidor";
+                    break;
+                case 3:
+                    query = "cv";
+                    break;
+                case 4:
+                    query = "descripcion";
+                    break;
+                case 5:
+                    query = "precioCompra";
+                    break;
+                case 6:
+                    query = "precioVenta";
+                    break;
+                case 7:
+                    query = "marca";
+                    break;
+                case 8:
+                    query = "modelo";
+                    break;
             }
 
             query += solicitarOrden();
@@ -75,7 +91,7 @@ public interface Interactuador {
         System.out.print("Introduzca el número de bastidor del vehículo: ");
         long numBastidor = (long) solicitarValorNumérico(Long.class);
 
-        try {  
+        try {
             Vehiculo vehiculo = miGestor.requestById(numBastidor);
             if (vehiculo != null) {
                 System.out.println(vehiculo);
@@ -87,24 +103,24 @@ public interface Interactuador {
         }
     }
 
-    public static void altaVehiculo() {    
+    public static void altaVehiculo() {
         System.out.print("Introduzca la matrícula: ");
-        long matricula = (long)solicitarValorNumérico(Long.class);
+        long matricula = (long) solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca el número de bastidor: ");
-        long numBastidor = (long)solicitarValorNumérico(Long.class);
+        long numBastidor = (long) solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca los caballos (CV): ");
-        int cv = (int)solicitarValorNumérico(Integer.class);
+        int cv = (int) solicitarValorNumérico(Integer.class);
 
         System.out.print("Introduzca la descripción: ");
         String descripcion = sc.nextLine();
 
         System.out.print("Introduzca el precio de compra: ");
-        double precioCompra = (double)solicitarValorNumérico(Double.class);
+        double precioCompra = (double) solicitarValorNumérico(Double.class);
 
         System.out.print("Introduzca el precio de venta: ");
-        double precioVenta = (double)solicitarValorNumérico(Double.class);
+        double precioVenta = (double) solicitarValorNumérico(Double.class);
 
         System.out.print("Introduzca la marca: ");
         String marca = sc.nextLine();
@@ -112,9 +128,10 @@ public interface Interactuador {
         System.out.print("Introduzca el modelo: ");
         String modelo = sc.nextLine();
 
-        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca, modelo);
+        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca,
+                modelo);
 
-        try {  
+        try {
             if (!miGestor.insert(vehiculo)) {
                 System.out.println("Error: no se pudo crear el vehículo.");
             }
@@ -123,24 +140,24 @@ public interface Interactuador {
         }
     }
 
-    public static void modificaciónVehiculo() {      
+    public static void modificaciónVehiculo() {
         System.out.print("Introduzca el número de bastidor del vehículo que desea modificar: ");
-        long numBastidor = (long)solicitarValorNumérico(Long.class);
+        long numBastidor = (long) solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca la nueva matrícula: ");
-        long matricula = (long)solicitarValorNumérico(Long.class);
+        long matricula = (long) solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca los nuevos caballos (CV): ");
-        int cv = (int)solicitarValorNumérico(Integer.class);
+        int cv = (int) solicitarValorNumérico(Integer.class);
 
         System.out.print("Introduzca la nueva descripción: ");
         String descripcion = sc.nextLine();
 
         System.out.print("Introduzca el nuevo precio de compra: ");
-        double precioCompra = (double)solicitarValorNumérico(Double.class);
+        double precioCompra = (double) solicitarValorNumérico(Double.class);
 
         System.out.print("Introduzca el nuevo precio de venta: ");
-        double precioVenta = (double)solicitarValorNumérico(Double.class);
+        double precioVenta = (double) solicitarValorNumérico(Double.class);
 
         System.out.print("Introduzca la nueva marca: ");
         String marca = sc.nextLine();
@@ -148,7 +165,8 @@ public interface Interactuador {
         System.out.print("Introduzca el nuevo modelo: ");
         String modelo = sc.nextLine();
 
-        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca, modelo);
+        Vehiculo vehiculo = new Vehiculo(matricula, numBastidor, cv, descripcion, precioCompra, precioVenta, marca,
+                modelo);
 
         try {
             if (!miGestor.update(vehiculo)) {
@@ -159,9 +177,9 @@ public interface Interactuador {
         }
     }
 
-    public static void bajaVehiculo() {  
+    public static void bajaVehiculo() {
         System.out.print("Introduzca el número de bastidor del vehículo que desea dar de baja: ");
-        long numBastidor = (long)solicitarValorNumérico(Long.class);
+        long numBastidor = (long) solicitarValorNumérico(Long.class);
 
         try {
             if (!miGestor.delete(numBastidor)) {
@@ -176,7 +194,8 @@ public interface Interactuador {
         int elección = 0;
         try {
             elección = sc.nextInt();
-            if (elección < 1 || elección > OPCIÓN_MAX) throw new IllegalArgumentException();
+            if (elección < 1 || elección > OPCIÓN_MAX)
+                throw new IllegalArgumentException();
         } catch (Exception e) {
             System.out.println("Opción inválida.\n");
         } finally {
@@ -189,18 +208,24 @@ public interface Interactuador {
         Object resultado = null;
         while (resultado == null) {
             try {
-                if (tipo == Short.class) resultado = sc.nextShort();
-                else if (tipo == Integer.class) resultado = sc.nextInt();
-                else if (tipo == Long.class) resultado = sc.nextLong();
-                else if (tipo == Float.class) resultado = sc.nextFloat();
-                else if (tipo == Double.class) resultado = sc.nextDouble();
-                else System.out.println("Tipo no soportado.");
+                if (tipo == Short.class)
+                    resultado = sc.nextShort();
+                else if (tipo == Integer.class)
+                    resultado = sc.nextInt();
+                else if (tipo == Long.class)
+                    resultado = sc.nextLong();
+                else if (tipo == Float.class)
+                    resultado = sc.nextFloat();
+                else if (tipo == Double.class)
+                    resultado = sc.nextDouble();
+                else
+                    System.out.println("Tipo no soportado.");
             } catch (Exception e) {
                 System.out.print("Valor inválido.\nPruebe de nuevo: ");
             } finally {
                 sc.nextLine();
             }
-        }        
+        }
         return resultado;
     }
 
@@ -210,9 +235,12 @@ public interface Interactuador {
         System.out.print("Seleccione el orden: ");
 
         switch (solicitarElección(2)) {
-            case 1: return " ASC";
-            case 2: return " DESC";
-            default: return "";
+            case 1:
+                return " ASC";
+            case 2:
+                return " DESC";
+            default:
+                return "";
         }
     }
 
@@ -220,7 +248,8 @@ public interface Interactuador {
         System.out.println("¿Desea exportar los datos a un archivo? (Y/N)");
         String eleccion = sc.nextLine();
 
-        if (eleccion.equalsIgnoreCase("n")) return;
+        if (eleccion.equalsIgnoreCase("n"))
+            return;
 
         System.out.print("Introduzca el nombre del archivo: ");
         String nombreArchivo = sc.nextLine();
@@ -244,15 +273,14 @@ public interface Interactuador {
                 String[] datos = linea.split(",");
 
                 Vehiculo vehiculo = new Vehiculo(
-                    Long.parseLong(datos[0]),
-                    Long.parseLong(datos[1]),
-                    Integer.parseInt(datos[2]),
-                    datos[3],
-                    Double.parseDouble(datos[4]),
-                    Double.parseDouble(datos[5]),
-                    datos[6],
-                    datos[7]
-                );
+                        Long.parseLong(datos[0]),
+                        Long.parseLong(datos[1]),
+                        Integer.parseInt(datos[2]),
+                        datos[3],
+                        Double.parseDouble(datos[4]),
+                        Double.parseDouble(datos[5]),
+                        datos[6],
+                        datos[7]);
 
                 try {
                     if (!miGestor.insert(vehiculo)) {

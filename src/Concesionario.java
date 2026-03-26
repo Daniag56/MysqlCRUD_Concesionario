@@ -1,11 +1,11 @@
 import usuario.Interactuador;
 
 public class Concesionario implements Interactuador {
-    
-    public static final String RED_BRIGHT = "\033[0;91m"; 
-    public static final String GREEN_BRIGHT = "\033[0;92m"; 
-    public static final String YELLOW_BRIGHT = "\033[0;93m"; 
-    public static final String RESET = "\033[0m"; 
+
+    public static final String RED_BRIGHT = "\033[0;91m";
+    public static final String GREEN_BRIGHT = "\033[0;92m";
+    public static final String YELLOW_BRIGHT = "\033[0;93m";
+    public static final String RESET = "\033[0m";
 
     public static void main(String[] args) throws Exception {
         final int OPCION_MAX = 6;
@@ -13,10 +13,9 @@ public class Concesionario implements Interactuador {
 
         do {
             System.out.printf(
-                "\n%s¡Bienvenido a%s %sGESTISIMAL%s (%sGesti%són %ssim%splificada de %sal%smacén)!\n", 
-                YELLOW_BRIGHT, RESET, GREEN_BRIGHT, RESET, 
-                GREEN_BRIGHT, RESET, GREEN_BRIGHT, RESET, GREEN_BRIGHT, RESET
-            );
+                    "\n%s¡Bienvenido a%s %sGESTISIMAL%s (%sGesti%són %ssim%splificada de %sal%smacén)!\n",
+                    YELLOW_BRIGHT, RESET, GREEN_BRIGHT, RESET,
+                    GREEN_BRIGHT, RESET, GREEN_BRIGHT, RESET, GREEN_BRIGHT, RESET);
 
             System.out.println("Por favor, seleccione una de estas opciones:");
             System.out.println("(1) Consulta ordenada de vehículos.");
@@ -35,7 +34,7 @@ public class Concesionario implements Interactuador {
                     break;
 
                 case 2:
-                    Interactuador.consultaPorBastidor(); 
+                    Interactuador.consultaPorBastidor();
                     break;
 
                 case 3:
@@ -43,11 +42,11 @@ public class Concesionario implements Interactuador {
                     break;
 
                 case 4:
-                    Interactuador.modificaciónVehiculo(); 
+                    Interactuador.modificaciónVehiculo();
                     break;
 
                 case 5:
-                    Interactuador.bajaVehiculo(); 
+                    Interactuador.bajaVehiculo();
                     break;
             }
 
