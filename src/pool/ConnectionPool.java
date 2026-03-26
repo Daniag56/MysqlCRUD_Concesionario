@@ -37,6 +37,7 @@ public class ConnectionPool {
     public Connection getConnection(){
         Connection conn = null;
         try {
+            Class.forName("org.postgresql.Driver");
             // Obtiene una conexión con los parámetros de conexión dados
             conn = DriverManager.getConnection(this.url, this.user, this.password);
             // Si obtenemos conexión la añadimos en el array de conexiones
