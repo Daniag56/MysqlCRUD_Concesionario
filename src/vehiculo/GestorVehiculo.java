@@ -1,4 +1,4 @@
-package productos;
+package vehiculo;
 
 import crud.GestorGenerico;
 import java.sql.Connection;
@@ -8,7 +8,7 @@ import java.util.List;
 public class GestorVehiculo extends GestorGenerico<Vehiculo> {
 
     public GestorVehiculo(Connection conn) {
-        super(conn, "vehiculos", "matricula", 
+        super(conn, "vehiculos", "numBastidor",
             rs -> new Vehiculo(
                 rs.getLong("matricula"),
                 rs.getLong("numBastidor"),
@@ -36,11 +36,11 @@ public class GestorVehiculo extends GestorGenerico<Vehiculo> {
     @Override
     public boolean update(Vehiculo v) throws SQLException {
         return execute(
-            "UPDATE vehiculos SET numBastidor=?, cv=?, descripcion=?, precioCompra=?, precioVenta=?, marca=?, modelo=? " +
-            "WHERE matricula=?",
-            v.getNumBastidor(), v.getCv(), v.getDescripcion(),
+            "UPDATE vehiculos SET matricula=?, cv=?, descripcion=?, precioCompra=?, precioVenta=?, marca=?, modelo=? " +
+            "WHERE numBastidor=?",
+            v.getMatricula(), v.getCv(), v.getDescripcion(),
             v.getPrecioCompra(), v.getPrecioVenta(),
-            v.getMarca(), v.getModelo(), v.getMatricula()
+            v.getMarca(), v.getModelo(), v.getNumBastidor()
         );
     }
 

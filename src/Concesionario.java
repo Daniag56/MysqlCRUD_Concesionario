@@ -2,10 +2,10 @@ import usuario.Interactuador;
 
 public class Concesionario implements Interactuador {
     
-    public static final String RED_BRIGHT = "\033[0;91m"; // RED
-    public static final String GREEN_BRIGHT = "\033[0;92m"; // GREEN
-    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
-    public static final String RESET = "\033[0m"; // Text Reset
+    public static final String RED_BRIGHT = "\033[0;91m"; 
+    public static final String GREEN_BRIGHT = "\033[0;92m"; 
+    public static final String YELLOW_BRIGHT = "\033[0;93m"; 
+    public static final String RESET = "\033[0m"; 
 
     public static void main(String[] args) throws Exception {
         final int OPCION_MAX = 6;
@@ -20,7 +20,7 @@ public class Concesionario implements Interactuador {
 
             System.out.println("Por favor, seleccione una de estas opciones:");
             System.out.println("(1) Consulta ordenada de vehículos.");
-            System.out.println("(2) Consulta de datos por matrícula.");
+            System.out.println("(2) Consulta de datos por número de bastidor.");
             System.out.println("(3) Alta de nuevo vehículo.");
             System.out.println("(4) Actualización de los datos de un vehículo.");
             System.out.println("(5) Baja de un vehículo.");
@@ -35,7 +35,7 @@ public class Concesionario implements Interactuador {
                     break;
 
                 case 2:
-                    Interactuador.consultaPorMatricula();
+                    Interactuador.consultaPorBastidor(); 
                     break;
 
                 case 3:
@@ -43,11 +43,11 @@ public class Concesionario implements Interactuador {
                     break;
 
                 case 4:
-                    Interactuador.modificaciónVehiculo();
+                    Interactuador.modificaciónVehiculo(); 
                     break;
 
                 case 5:
-                    Interactuador.bajaVehiculo();
+                    Interactuador.bajaVehiculo(); 
                     break;
             }
 

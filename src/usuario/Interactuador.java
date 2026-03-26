@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import pool.ConnectionPool;
-import productos.GestorVehiculo;
-import productos.Vehiculo;
+import vehiculo.GestorVehiculo;
+import vehiculo.Vehiculo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -71,16 +71,16 @@ public interface Interactuador {
         }
     }
 
-    public static void consultaPorMatricula() {
-        System.out.print("Introduzca la matrícula del vehículo: ");
-        long matricula = (long) solicitarValorNumérico(Long.class);
+    public static void consultaPorBastidor() {
+        System.out.print("Introduzca el número de bastidor del vehículo: ");
+        long numBastidor = (long) solicitarValorNumérico(Long.class);
 
         try {  
-            Vehiculo vehiculo = miGestor.requestById(matricula);
+            Vehiculo vehiculo = miGestor.requestById(numBastidor);
             if (vehiculo != null) {
                 System.out.println(vehiculo);
             } else {
-                System.out.println("Error: No se encontró ningún vehículo por esa matrícula.");
+                System.out.println("Error: No se encontró ningún vehículo con ese número de bastidor.");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -124,11 +124,11 @@ public interface Interactuador {
     }
 
     public static void modificaciónVehiculo() {      
-        System.out.print("Introduzca la matrícula del vehículo que desea modificar: ");
-        long matricula = (long)solicitarValorNumérico(Long.class);
-
-        System.out.print("Introduzca el nuevo número de bastidor: ");
+        System.out.print("Introduzca el número de bastidor del vehículo que desea modificar: ");
         long numBastidor = (long)solicitarValorNumérico(Long.class);
+
+        System.out.print("Introduzca la nueva matrícula: ");
+        long matricula = (long)solicitarValorNumérico(Long.class);
 
         System.out.print("Introduzca los nuevos caballos (CV): ");
         int cv = (int)solicitarValorNumérico(Integer.class);
@@ -160,11 +160,11 @@ public interface Interactuador {
     }
 
     public static void bajaVehiculo() {  
-        System.out.print("Introduzca la matrícula del vehículo que desea dar de baja: ");
-        long matricula = (long)solicitarValorNumérico(Long.class);
+        System.out.print("Introduzca el número de bastidor del vehículo que desea dar de baja: ");
+        long numBastidor = (long)solicitarValorNumérico(Long.class);
 
         try {
-            if (!miGestor.delete(matricula)) {
+            if (!miGestor.delete(numBastidor)) {
                 System.out.println("Error: no se pudo borrar el vehículo.");
             }
         } catch (Exception e) {
